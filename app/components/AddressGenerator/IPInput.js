@@ -1,8 +1,13 @@
+'use client';
+
 import { Flex, TextField, Button } from '@radix-ui/themes';
 import { MagnifyingGlassIcon, ReloadIcon } from '@radix-ui/react-icons';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-export function IPInput({ ipInput, setIpInput, onGenerateAddress, loading }) {
+export function IPInput({ onGenerate, loading }) {
+    const [ipInput, setIpInput] = useState('');
+
     return (
         <Flex gap="3" width="100%" align="center">
             <TextField.Root
@@ -18,7 +23,7 @@ export function IPInput({ ipInput, setIpInput, onGenerateAddress, loading }) {
             </TextField.Root>
             <Button
                 size="3"
-                onClick={() => onGenerateAddress(ipInput)}
+                onClick={() => onGenerate(ipInput)}
                 disabled={loading}
             >
                 <ReloadIcon size="3" />
@@ -29,8 +34,6 @@ export function IPInput({ ipInput, setIpInput, onGenerateAddress, loading }) {
 }
 
 IPInput.propTypes = {
-    ipInput: PropTypes.string.isRequired,
-    setIpInput: PropTypes.func.isRequired,
-    onGenerateAddress: PropTypes.func.isRequired,
+    onGenerate: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired
 };
